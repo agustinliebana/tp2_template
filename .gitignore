@@ -1,6 +1,23 @@
+#Project config file
+.project
+.settings/
+.classpath
+target/
 .vscode/
 .pytest_cache/
 *.pyc
 env/
 .DS_Store
 __pycache__
+
+
+#IntelliJ folders
+out/
+.idea/
+*.iml
+
+#BACKUPS
+README_*
+
+#Personal Files
+*.exclude
