@@ -9,7 +9,7 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/css/bootstrap.min.css" integrity="sha384-Smlep5jCw/wG7hdkwQ/Z5nLIefveQRIY9nfy6xoR1uRYBtpZgI6339F5dgvm/e9B" crossorigin="anonymous">
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/sticky-footer-navbar/">
-    <title>Hello, world!</title>
+    <title>Estacion Meteorologica</title>
 </head>
 
 
@@ -22,6 +22,64 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.2/js/bootstrap.min.js" integrity="sha384-o+RDsa0aLu++PJvFqy8fFScvbHFLtbvScb8AjopnFD+iEQ7wo/CG0xlczd+2O/em" crossorigin="anonymous"></script>
+
+    <div class="container-fluid">
+        <div class="row d-flex justify-content-center"">
+            <h1>Valores de muestreo</h1>
+        </div>
+        <hr/>
+        <div class="row">
+            <div class="col-md-2 offset-md-2">
+                <h4>Temperatura</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Humedad</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Presion Atm</h4>
+            </div>
+            <div class="col-md-2">
+                <h4>Velocidad Viento</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-2 offset-md-2">
+                <h4 class="text-success">50C</h4>
+            </div>
+            <div class="col-md-2">
+                <h4 class="text-success">100%</h4>
+            </div>
+            <div class="col-md-2">
+                <h4 class="text-success">1050 Hpa</h4>
+            </div>
+            <div class="col-md-2">
+                <h4 class="text-success">14 Km/h</h4>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-4 offset-md-4">
+                <hr/>
+            </div>
+        </div>
+        <div class="row">
+        <div class="col-md-2 offset-md-4">
+            <h2>Periodo de Muestreo: </h2>
+        </div>
+            <form>
+                <div class="form-group">
+                  <select class="form-control col-md-2" id="sel1">
+                    <option>1 Segundo</option>
+                    <option>2 Segundos</option>
+                    <option>5 Segundos</option>
+                    <option>10 Segundos</option>
+                    <option>30 Segundos</option>
+                    <option>60 Segundos</option>
+                  </select>
+                </div>
+            </form>
+        </div>
+
+    </div>
 
 </body>
 
