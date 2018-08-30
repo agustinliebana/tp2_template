@@ -23,7 +23,6 @@ def index():
 
 @app.route('/refresh', methods=['GET'])
 def refresh():
-
     last_sample = Database().get_data()
     avg_values = Database().get_all_avg()
     return jsonify(temperature=last_sample.temperature,
@@ -35,6 +34,15 @@ def refresh():
                    humavg=avg_values['avgpres'],
                    winavg=avg_values['avgwsp'])
 
+@app.route('/upload', methods=['POST'])
+def upload_data():
+    data = request.form
+    values = {}
+    values['measuredtemp'] = data['temperature']
+    values['measuredhum'] = data['humidity']
+    values['measuredpres'] = data['pressure']
+    values['measuredwsp'] = data['windspeed']
+    return Database().save_values(values)
 
 
 if __name__ == "__main__":
