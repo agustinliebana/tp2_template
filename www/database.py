@@ -1,4 +1,4 @@
-from sqlalchemy import create_engine
+from sqlalchemy import create_engine, func
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy.ext.declarative import declarative_base
 from models import Samples
@@ -42,3 +42,23 @@ class Database(object):
         session = self.get_session()
         last_sample = session.query(Samples).order_by(Samples.id.desc()).first()
         return last_sample
+
+    def get_temp_avg(self):
+        session = self.get_session()
+        temp_avg = session.query(func.avg(Samples.temperature)).order_by(Samples.id.desc()).all()[:10]
+        return temp_avg[0]
+
+    def get_hum_avg(self):
+        session = self.get_session()
+        hum_avg = session.query(func.avg(Samples.humidity)).order_by(Samples.id.desc()).all()[:10]
+        return hum_avg[0]
+
+    def get_wind_avg(self):
+        session = self.get_session()
+        wind_avg = session.query(func.avg(Samples.windspeed)).order_by(Samples.id.desc()).all()[:10]
+        return wind_avg[0]
+
+    def get_press_avg(self):
+        session = self.get_session()
+        press_avg = session.query(func.avg(Samples.pressure)).order_by(Samples.id.desc()).all()[:10]
+        return press_avg[0]
