@@ -10,24 +10,30 @@ proc = Process()
 @app.route('/')
 def index():
     proc.start_process()
-    return render_template('index.html')
+    last_sample = Database().get_data()
+    avg_values = Database().get_all_avg()
+    return render_template('index.html',temperature=last_sample.temperature,
+                   humidity=last_sample.humidity,
+                   pressure=last_sample.pressure,
+                   windspeed=last_sample.windspeed,
+                   tmpavg=avg_values['avgtemp'],
+                   preavg=avg_values['avghum'],
+                   humavg=avg_values['avgpres'],
+                   winavg=avg_values['avgwsp'])
 
 @app.route('/refresh', methods=['GET'])
 def refresh():
 
     last_sample = Database().get_data()
-    tmp_avg = str(Database().get_temp_avg()[0])
-    pre_avg = str(Database().get_press_avg()[0])
-    hum_avg = str(Database().get_hum_avg()[0])
-    win_avg = str(Database().get_wind_avg()[0])
+    avg_values = Database().get_all_avg()
     return jsonify(temperature=last_sample.temperature,
                    humidity=last_sample.humidity,
                    pressure=last_sample.pressure,
                    windspeed=last_sample.windspeed,
-                   tmpavg=tmp_avg,
-                   preavg=pre_avg,
-                   humavg=hum_avg,
-                   winavg=win_avg)
+                   tmpavg=avg_values['avgtemp'],
+                   preavg=avg_values['avghum'],
+                   humavg=avg_values['avgpres'],
+                   winavg=avg_values['avgwsp'])
 
 
 

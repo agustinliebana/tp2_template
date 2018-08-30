@@ -62,3 +62,16 @@ class Database(object):
         session = self.get_session()
         press_avg = session.query(func.avg(Samples.pressure)).order_by(Samples.id.desc()).all()[:10]
         return press_avg[0]
+
+    def get_all_avg(self):
+        session = self.get_session()
+        temp_avg = session.query(func.avg(Samples.temperature)).order_by(Samples.id.desc()).all()[:10]
+        hum_avg = session.query(func.avg(Samples.humidity)).order_by(Samples.id.desc()).all()[:10]
+        wind_avg = session.query(func.avg(Samples.windspeed)).order_by(Samples.id.desc()).all()[:10]
+        press_avg = session.query(func.avg(Samples.pressure)).order_by(Samples.id.desc()).all()[:10]
+        avg_values = {}
+        avg_values['avgtemp'] = str(temp_avg[0][0])
+        avg_values['avghum'] = str(hum_avg[0][0])
+        avg_values['avgpres'] = str(press_avg[0][0])
+        avg_values['avgwsp'] = str(wind_avg[0][0])
+        return avg_values
