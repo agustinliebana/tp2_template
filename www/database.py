@@ -34,33 +34,38 @@ class Database(object):
         samp = Samples(temperature=values['measuredtemp'],humidity=values['measuredhum'],pressure=values['measuredpres'],windspeed=values['measuredwsp'])
         session.add(samp)
         session.commit()
-        samp_id = int(samp.id)
+        id = int(samp.id)
         session.close()
-        return samp_id
+        return str(id)
 
     def get_data(self):
         session = self.get_session()
         last_sample = session.query(Samples).order_by(Samples.id.desc()).first()
+        session.close()
         return last_sample
 
     def get_temp_avg(self):
         session = self.get_session()
         temp_avg = session.query(func.avg(Samples.temperature)).order_by(Samples.id.desc()).all()[:10]
+        session.close()
         return temp_avg[0]
 
     def get_hum_avg(self):
         session = self.get_session()
         hum_avg = session.query(func.avg(Samples.humidity)).order_by(Samples.id.desc()).all()[:10]
+        session.close()
         return hum_avg[0]
 
     def get_wind_avg(self):
         session = self.get_session()
         wind_avg = session.query(func.avg(Samples.windspeed)).order_by(Samples.id.desc()).all()[:10]
+        session.close()
         return wind_avg[0]
 
     def get_press_avg(self):
         session = self.get_session()
         press_avg = session.query(func.avg(Samples.pressure)).order_by(Samples.id.desc()).all()[:10]
+        session.close()
         return press_avg[0]
 
     def get_all_avg(self):
@@ -74,4 +79,5 @@ class Database(object):
         avg_values['avghum'] = str(hum_avg[0][0])
         avg_values['avgpres'] = str(press_avg[0][0])
         avg_values['avgwsp'] = str(wind_avg[0][0])
+        session.close()
         return avg_values

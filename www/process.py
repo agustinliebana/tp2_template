@@ -23,7 +23,7 @@ def main(session):
     killer = GracefulKiller()
     t_seed = random.randint(0, 35)
     h_seed = random.randint(10, 90)
-    p_seed = random.randint(900, 1050)
+    p_seed = random.randint(560, 960)
     w_seed = random.randint(0, 50)
     while (1):
         temp = t_seed + random.randint(-5, 5)
@@ -36,7 +36,7 @@ def main(session):
                 'pressure':press,
                 'windspeed':windsp}
         measure_id = requests.post('http://localhost:8888/upload', data = data)
-        print("***ID de la medida guardada: %s" % measure_id)
+        print("***   ***   ID de la medida guardada: %s" % measure_id.content)
         time.sleep(1)
         if killer.kill_now:
             session.close()

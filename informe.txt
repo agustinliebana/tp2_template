@@ -1,0 +1,16 @@
+1)
+    a)
+        El proceso simulador del microcontrolador (process.py) se compone básicamente de un lazo infinito, que en base a unas semillas aleatórias que simulan un estado inicial de las condiciones a medir, 
+        modifica (aleatoriamente) en un rango +-5. Luego de esto, los valores generados son enviados por POST al endpoint /update donde luego son almacenados en la base de datos con metodos implementados utilizando SQLAlchemy, y así vuelve a repetirse con intervalos de 1 segundo entre cada iteración (time.sleep(1)).
+        La clase adicionada GracefulKiller intenta evitar problemas de consistencia en la base de datos, cerrando la sesión de la misma ante una señal de stop (Ctrl + C ó kill).
+
+    b)
+
+2) Por tratarse de un modelo Productor-Consumidor, podría ser víctima de los problemas de sincronizacion propios de dicho modelo. En este caso el recurso compartido es la base de datos y podría darse, tanto en la simulación
+    como en el proceso real, que ambos intenten acceder a dicho recurso al mismo tiempo. De todas maneras esto se soluciona con el Lock que provee MySQL donde incluso prodrían asignarse prioridades para los procesos y asi evitar
+    inconsistencias.
+
+3) Algunas diferencias evidentes entre el proceso de simulación y la fuente real de datos (microcontrolador) son las siguientes:
+    * Latencias en las comunicaciones de red con posibilidad de pérdidas de datos. Dichos retardos podrían ser significativos e influir en el tiempo de el relevamiento de datos de la placa.
+    * Lecturas incorrectas de los sensores, por diversas razones, cosas que en la simulacion no deberian pasar.
+    *

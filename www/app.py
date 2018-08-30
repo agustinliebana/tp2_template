@@ -17,8 +17,8 @@ def index():
                    pressure=last_sample.pressure,
                    windspeed=last_sample.windspeed,
                    tmpavg=avg_values['avgtemp'],
-                   preavg=avg_values['avghum'],
-                   humavg=avg_values['avgpres'],
+                   preavg=avg_values['avgpres'],
+                   humavg=avg_values['avghum'],
                    winavg=avg_values['avgwsp'])
 
 @app.route('/refresh', methods=['GET'])
@@ -30,8 +30,8 @@ def refresh():
                    pressure=last_sample.pressure,
                    windspeed=last_sample.windspeed,
                    tmpavg=avg_values['avgtemp'],
-                   preavg=avg_values['avghum'],
-                   humavg=avg_values['avgpres'],
+                   preavg=avg_values['avgpres'],
+                   humavg=avg_values['avghum'],
                    winavg=avg_values['avgwsp'])
 
 @app.route('/upload', methods=['POST'])
@@ -42,7 +42,8 @@ def upload_data():
     values['measuredhum'] = data['humidity']
     values['measuredpres'] = data['pressure']
     values['measuredwsp'] = data['windspeed']
-    return Database().save_values(values)
+    id = Database().save_values(values);
+    return str(id)
 
 
 if __name__ == "__main__":
