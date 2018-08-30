@@ -37,3 +37,8 @@ class Database(object):
         samp_id = int(samp.id)
         session.close()
         return samp_id
+
+    def get_data(self):
+        session = self.get_session()
+        last_sample = session.query(Samples).order_by(Samples.id.desc()).first()
+        return last_sample
