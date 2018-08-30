@@ -2,11 +2,14 @@
 from flask import Flask
 from flask import render_template , request, jsonify
 from database import Database
+from aux_pro import Process
 
 app = Flask(__name__)
+proc = Process()
 
 @app.route('/')
 def index():
+    proc.start_process()
     return render_template('index.html')
 
 @app.route('/refresh', methods=['GET'])
