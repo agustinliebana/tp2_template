@@ -14,7 +14,6 @@ def index():
 
 @app.route('/refresh', methods=['GET'])
 def refresh():
-
     last_sample = Database().get_data()
     tmp_avg = str(Database().get_temp_avg()[0])
     pre_avg = str(Database().get_press_avg()[0])
@@ -29,6 +28,15 @@ def refresh():
                    humavg=hum_avg,
                    winavg=win_avg)
 
+@app.route('/upload', methods=['POST'])
+def upload_data():
+    data = request.form
+    values = {}
+    values['measuredtemp'] = data['temperature']
+    values['measuredhum'] = data['humidity']
+    values['measuredpres'] = data['pressure']
+    values['measuredwsp'] = data['windspeed']
+    return Database().save_values(values)
 
 
 if __name__ == "__main__":
