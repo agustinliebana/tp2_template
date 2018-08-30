@@ -11,6 +11,10 @@ function request_data(){
                 $('#humidityText').text(data.humidity+" %");
                 $('#pressureText').text(data.pressure+" Hpa");
                 $('#windspText').text(data.windspeed+" Km/h");
+                $('#temperaturePr').text(data.tmpavg+" C");
+                $('#humidityPr').text(data.humavg+" %");
+                $('#pressurePr').text(data.preavg+" Hpa");
+                $('#windspPr').text(data.winavg+" Km/h");
             }
         })
 }

@@ -19,11 +19,6 @@ def main(session):
     p_seed = random.randint(900, 1050)
     w_seed = random.randint(0, 50)
     while(1):
-        temp = random.randint(0,50)
-        hum = random.randint(0,100)
-        press = random.randint(900,1050)
-        windsp = random.randint(0,100)
-        print("Temperatura: " + str(temp) + "\n Humedad:" + str(hum) + "\n Presion Atmosferica: " + str(press) + "\n Velocidad del Viento: " + str(windsp) + "\n")
         temp = t_seed + random.randint(-5, 5)
         hum = h_seed + random.randint(-5, 5)
         press = p_seed + random.randint(-5, 5)
@@ -35,7 +30,6 @@ def main(session):
         values['measuredpres'] = press
         values['measuredwsp'] = windsp
         measure_id = db.save_values(values)
-        print("ID de la medida guardada: " + str(measure_id))
         print("***ID de la medida guardada: %s" % measure_id)
         print("***PROMEDIO de la temperatura guardada: %s" % db.get_temp_avg())
         print("***PROMEDIO de la humedad guardada: %s" % db.get_hum_avg())
