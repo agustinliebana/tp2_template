@@ -9,15 +9,15 @@ app = Flask(__name__)
 def index():
     return render_template('index.html')
 
-@app.route('/refresh', methods=['POST'])
+@app.route('/refresh', methods=['GET'])
 def refresh():
 
-    update_int = request.form['interval']
-
     last_sample = Database().get_data()
-    
+    return jsonify(temperature=last_sample.temperature,
+                   humidity=last_sample.humidity,
+                   pressure=last_sample.pressure,
+                   windspeed=last_sample.windspeed)
 
-    return jsonify({'temperature' :})
 
 
 if __name__ == "__main__":
