@@ -13,6 +13,16 @@ proc = Process()
 def index():
     return render_template('index.html', temp=db.get_temp_avg()[0])
 
+@app.route('/refresh', methods=['GET'])
+def refresh():
+
+    last_sample = db.get_data()
+    return jsonify(temperature=last_sample.temperature,
+                   humidity=last_sample.humidity,
+                   pressure=last_sample.pressure,
+                   windspeed=last_sample.windspeed)
+
+
 @app.route('/measures', methods = ["GET"])
 def get_sample():
   sample = db.get_data()
