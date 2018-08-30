@@ -1,7 +1,7 @@
 # Imports
 from aux_pro import Process
 from flask import Flask
-from flask import render_template, request, jsonify
+from flask import render_template, jsonify
 from database import Database
 
 app = Flask(__name__)
