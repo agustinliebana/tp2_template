@@ -34,18 +34,6 @@ def refresh():
                    humavg=avg_values['avghum'],
                    winavg=avg_values['avgwsp'])
 
-@app.route('/upload', methods=['POST'])
-def upload_data():
-    data = request.form
-    values = {}
-    values['measuredtemp'] = data['temperature']
-    values['measuredhum'] = data['humidity']
-    values['measuredpres'] = data['pressure']
-    values['measuredwsp'] = data['windspeed']
-    id = Database().save_values(values);
-    return str(id)
-
-
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=8888)
 
